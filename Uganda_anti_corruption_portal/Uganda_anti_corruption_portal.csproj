@@ -203,6 +203,20 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\img01.gif" />
+    <Content Include="Content\images\img02.gif" />
+    <Content Include="Content\images\img03.gif" />
+    <Content Include="Content\images\img04.gif" />
+    <Content Include="Content\images\img05.gif" />
+    <Content Include="Content\images\img06.gif" />
+    <Content Include="Content\images\img07.gif" />
+    <Content Include="Content\images\img08.jpg" />
+    <Content Include="Content\images\img09.gif" />
+    <Content Include="Content\images\img10.gif" />
+    <Content Include="Content\images\img11.gif" />
+    <Content Include="Content\images\img12.gif" />
+    <Content Include="Content\images\img13.gif" />
+    <Content Include="Content\images\spacer.gif" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
