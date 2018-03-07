@@ -29,5 +29,11 @@ namespace Uganda_anti_corruption_portal.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Uganda_anti_corruption_portal.Models.Contributor> Contributors { get; set; }
+
+        public System.Data.Entity.DbSet<Uganda_anti_corruption_portal.Models.Activity> activities { get; set; }
+
+        public System.Data.Entity.DbSet<Uganda_anti_corruption_portal.Models.ActivityCategory> ActivityCategories { get; set; }
     }
 }

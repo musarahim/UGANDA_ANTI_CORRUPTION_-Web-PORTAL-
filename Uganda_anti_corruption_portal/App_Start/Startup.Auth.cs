@@ -54,15 +54,15 @@ namespace Uganda_anti_corruption_portal
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "1780153238682314",
+               appSecret: "df103f31a726248d3546a6e3fd0e5b1a");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = " 1067799187596-ks7bclaaup3flh1a3jlnhhvr4hco2k0h.apps.googleusercontent.com ",
+               ClientSecret = " d2eLvcenybcADGZE9TMm9u1T "
+            });
         }
     }
 }

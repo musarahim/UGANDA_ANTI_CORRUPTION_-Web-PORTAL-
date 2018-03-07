@@ -8,6 +8,7 @@ namespace Uganda_anti_corruption_portal.Controllers
 {
     public class HomeController : Controller
     {
+        [RequireHttps]
         public ActionResult Index()
         {
             return View();

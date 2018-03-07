@@ -155,6 +155,11 @@ namespace Uganda_anti_corruption_portal.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    UserManager.AddClaim(user.Id, new Claim(ClaimTypes.GivenName, model.FirstName));
+                    var db = new ApplicationDbContext();
+                    var contributor = new Contributor { FirstName = model.FirstName,LastName=model.LastName,Location=model.Location,Email=model.Email,ApplicationUserId=user.Id};
+                    db.Contributors.Add(contributor);
+                    db.SaveChanges();
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
