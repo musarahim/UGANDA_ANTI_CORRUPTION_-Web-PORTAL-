@@ -1,0 +1,8 @@
+﻿@model Uganda_anti_corruption_portal.Models.Activity
+    
+<div class="well-lg">
+    <p>&nbsp; <span class="lead">@Model.ActivityNo</span></p>
+    <img class="img-thumbnail"  height="200" width="600" src="@Url.Action("getImage", "Activities", new { ID =Model.ActivityID})" />
+    <p>&nbsp; <span class="lead">@Model.NameOfActivity</span></p>
+    <p>&nbsp; <span class="lead">@Model.Description</span></p>
+</div>

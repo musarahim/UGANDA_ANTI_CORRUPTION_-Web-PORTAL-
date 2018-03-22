@@ -8,12 +8,41 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Uganda_anti_corruption_portal.Models;
+using Uganda_anti_corruption_portal.ViewModel;
+
 
 namespace Uganda_anti_corruption_portal.Controllers
 {
     public class ActivitiesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        //Get:Activities to anonymous users
+        public int PageSize = 6;
+        public object CurrentCategory { get; private set; }
+        public ViewResult Activity(string category, int page = 1)
+        {
+
+            var ViewModel = new DisplayActivityModel
+            {
+                Contributors = db.Contributors.ToList().Distinct(),
+                Activities = db.activities
+                .Include(a => a.Contributor)
+                 .Include(a => a.ActivityCateory).Where(c => category == null || c.ActivityCateory.Category == category )
+                 .OrderBy(c => c.ContributorID).ThenBy(c=>c.ActivityNo).ToList()
+                 .Skip((page - 1) * PageSize).Take(PageSize),
+                PagingInfo = new PagingInfo
+                {
+                    CurrentPage = page,
+                    ItemsPerPage = PageSize,
+                    TotalItems = category == null ?
+                db.activities.Count() : db.activities.Where(c => c.ActivityCateory.Category == category).Count()
+                },
+                CurrentCategory = category
+            };
+            ViewModel.Contributors = db.Contributors;
+            ViewModel.ActivityCategories = db.ActivityCategories; 
+            return View(ViewModel);
+        }
 
         // GET: Activities
         [Authorize]
@@ -22,7 +51,7 @@ namespace Uganda_anti_corruption_portal.Controllers
             var UserId = User.Identity.GetUserId();
             var ContributorID = db.Contributors.Where(u => u.ApplicationUserId == UserId).First().ContributorID;
             ViewBag.ContributorID = ContributorID;
-            var activities = db.activities.Include(a => a.ActivityCateory);
+            var activities = db.activities.Include(a => a.ActivityCateory).Where(a=>a.ContributorID==ContributorID);
             return View(activities.ToList());
         }
 
@@ -41,6 +70,7 @@ namespace Uganda_anti_corruption_portal.Controllers
         }
 
         // GET: Activities/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -57,8 +87,12 @@ namespace Uganda_anti_corruption_portal.Controllers
 
         // GET: Activities/Create
         [Authorize]
-        public ActionResult Create( int ContributorID)
+        public ActionResult Create()
         {
+          
+              var UserId = User.Identity.GetUserId();
+            var ContributorID = db.Contributors.Where(u => u.ApplicationUserId == UserId).First().ContributorID;
+            ViewBag.ContributorID = ContributorID;
             ViewBag.ActivityCategoryID = new SelectList(db.ActivityCategories, "ActivityCategoryID", "NameOfService");
             return View();
         }
@@ -66,12 +100,15 @@ namespace Uganda_anti_corruption_portal.Controllers
         // POST: Activities/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ActivityID,ActivityCategoryID,ActivityNo,NameOfActivity,Description")] Activity activity,HttpPostedFileBase Image)
+        public ActionResult Create([Bind(Include = "ActivityID,ActivityCategoryID,ActivityNo,NameOfActivity,Description")] Activity activity, HttpPostedFileBase Image)
         {
             if (ModelState.IsValid)
             {
+             
+                
                 if (Image != null)
                 {
                     //image data
@@ -84,14 +121,17 @@ namespace Uganda_anti_corruption_portal.Controllers
                 activity.ContributorID = ContributorID;
                 db.activities.Add(activity);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                TempData["notice"] = "Successfully inserted one Step";
+                return RedirectToAction("Create");
             }
 
             ViewBag.ActivityCategoryID = new SelectList(db.ActivityCategories, "ActivityCategoryID", "NameOfService", activity.ActivityCategoryID);
             return View(activity);
+
         }
 
         // GET: Activities/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -110,6 +150,7 @@ namespace Uganda_anti_corruption_portal.Controllers
         // POST: Activities/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ActivityID,ActivityCategoryID,ActivityNo,NameOfActivity,Description")] Activity activity,HttpPostedFileBase Image)
@@ -132,6 +173,7 @@ namespace Uganda_anti_corruption_portal.Controllers
         }
 
         // GET: Activities/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)

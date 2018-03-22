@@ -60,8 +60,8 @@ namespace Uganda_anti_corruption_portal
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = " 1067799187596-ks7bclaaup3flh1a3jlnhhvr4hco2k0h.apps.googleusercontent.com ",
-               ClientSecret = " d2eLvcenybcADGZE9TMm9u1T "
+                ClientId = "1067799187596-e1j21cpmd09tbqi00potfkf9apt333t1.apps.googleusercontent.com",
+               ClientSecret = "t0i8te7ZQT7Sm5HbGbNcUE3E"
             });
         }
     }

@@ -18,11 +18,15 @@ namespace Uganda_anti_corruption_portal.Models
 
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+         public string Name { get
+            {
+                return string.Format("{0} {1}", this.FirstName, this.LastName);
+            } }
 
         public virtual ApplicationUser User { get; set; }
         [Required]
         public string ApplicationUserId { get; set; }
         public virtual ICollection<Activity> Activities { get; set; }
-
+       
     }
 }

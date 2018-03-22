@@ -8,6 +8,12 @@ namespace Uganda_anti_corruption_portal.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+        [Display(Name = "Current Location")]
+        public string Location { get; set; }
     }
 
     public class ExternalLoginListViewModel

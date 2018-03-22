@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Uganda_anti_corruption_portal.Models;
+using Uganda_anti_corruption_portal.Services;
 
 namespace Uganda_anti_corruption_portal.Controllers
 {
@@ -156,10 +157,9 @@ namespace Uganda_anti_corruption_portal.Controllers
                 if (result.Succeeded)
                 {
                     UserManager.AddClaim(user.Id, new Claim(ClaimTypes.GivenName, model.FirstName));
-                    var db = new ApplicationDbContext();
-                    var contributor = new Contributor { FirstName = model.FirstName,LastName=model.LastName,Location=model.Location,Email=model.Email,ApplicationUserId=user.Id};
-                    db.Contributors.Add(contributor);
-                    db.SaveChanges();
+
+                    var Service = new UserAccountServices(HttpContext.GetOwinContext().Get<ApplicationDbContext>());
+                    Service.createUserAccount(model.FirstName, model.LastName, model.Location, model.Email, user.Id);
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
@@ -372,13 +372,15 @@ namespace Uganda_anti_corruption_portal.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,FirstName=model.FirstName,LastName=model.LastName,Location=model.Location  };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
+                        var Service = new UserAccountServices(HttpContext.GetOwinContext().Get<ApplicationDbContext>());
+                        Service.createUserAccount(model.FirstName,model.LastName,model.Location, model.Email, user.Id);
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                         return RedirectToLocal(returnUrl);
                     }

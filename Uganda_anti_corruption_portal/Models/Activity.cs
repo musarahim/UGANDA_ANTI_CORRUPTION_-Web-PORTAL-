@@ -15,7 +15,7 @@ namespace Uganda_anti_corruption_portal.Models
         [ForeignKey("ActivityCateory")]
         public int ActivityCategoryID { get; set; }
         public virtual ActivityCategory ActivityCateory { get; set; }
-        [Display(Name="Activity NO.")]
+        [Display(Name="Step NO.")]
         public int ActivityNo { get; set; }
         [Display(Name ="Name of Activity")]
         public string NameOfActivity { get; set; }

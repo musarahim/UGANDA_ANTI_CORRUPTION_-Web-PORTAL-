@@ -11,6 +11,7 @@ namespace Uganda_anti_corruption_portal
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+        
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
@@ -18,6 +19,30 @@ namespace Uganda_anti_corruption_portal
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute(null,
+                 "",
+                 new
+                {
+                  controller = "Activities",
+                  action = "Activity",
+                  category = (string)null,
+                        page = 1 });
+            routes.MapRoute(null,
+            "Page{page}",
+            new { controller = "Activities", action = "Activity", category = (string)null },
+            new { page = @"\d+" }
+                        );
+            routes.MapRoute(null,
+            "{category}",
+            new { controller = "Activities", action = "Activity", page = 1 }
+            );
+            routes.MapRoute(null,
+            "{category}/Page{page}",
+            new { controller = "Activities", action = "Activity" },
+            new { page = @"\d+" }
+            );
+            routes.MapRoute(null, "{controller}/{action}");
+
         }
     }
 }
