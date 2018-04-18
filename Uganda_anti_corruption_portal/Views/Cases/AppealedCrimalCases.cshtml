@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Uganda_anti_corruption_portal.Models.Case>
+
+@{
+    ViewBag.Title = "AppealedCrimalCases";
+}
+
+<div class=" jumbotron backgroundcontent">
+    <h2>IG Court Cases</h2>
+    <h3>Appealed Criminal Cases</h3>
+    @foreach (var item in Model)
+    {
+        <div class="card" style="width:90%;">
+            <div class="card-body">
+                <h5 class="card-title"> @item.CaseRef</h5>
+                <h6 class="card-subtitle"> Updated on:  @Html.DisplayNameFor(model => model.UpdatedDate)</h6>
+                <p class="card-text">@item.Description</p>
+            </div>
+        </div>
+    }
+</div>

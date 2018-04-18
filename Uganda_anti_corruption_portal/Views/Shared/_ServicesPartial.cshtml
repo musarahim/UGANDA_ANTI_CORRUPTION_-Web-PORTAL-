@@ -1,8 +1,10 @@
 ﻿@model Uganda_anti_corruption_portal.Models.Activity
     
-<div class="well-lg">
-    <p>&nbsp; <span class="lead">@Model.ActivityNo</span></p>
-    <img class="img-thumbnail"  height="200" width="600" src="@Url.Action("getImage", "Activities", new { ID =Model.ActivityID})" />
-    <p>&nbsp; <span class="lead">@Model.NameOfActivity</span></p>
-    <p>&nbsp; <span class="lead">@Model.Description</span></p>
-</div>
+<div class="card mb-3">
+    <img class="card-img-top" src="@Url.Action("getImage","Activities",new { ID = Model.ActivityID })" alt="Card image cap"/>
+    <div class="card-body">
+        <p class="card-text"><small class="text-muted">@Model.ActivityNo</small></p>
+        <h5 class="card-title">@Model.NameOfActivity</h5>
+        <p class="card-text">@Model.Description</p>
+    </div>
+</div> 

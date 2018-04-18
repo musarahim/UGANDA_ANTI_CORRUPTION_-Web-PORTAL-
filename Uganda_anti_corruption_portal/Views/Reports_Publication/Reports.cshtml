@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Uganda_anti_corruption_portal.Models.Reports_Publication>
+
+@{
+    ViewBag.Title = "Reports";
+}
+<div class=" jumbotron backgroundcontent">
+    <h2>IG Reports</h2>
+    @foreach (var item in Model)
+    {
+        <div class="card" style="width:80%; margin-bottom:3px;">
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="@Url.Action("GetFile","Reports_Publication",new {id=item .Reports_PublicationID})" target="_blank">
+                        <img class="card-img img-thumbnail" src="~/Content/images/igg_report.jpg" alt="report image" />
+                    </a>
+
+                </div>
+                <div class="col-md-9">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color:darkgreen;">@item.Title</h5>
+                        <h6 class="card-subtitle"><b>Date:</b> @Html.DisplayFor(modelItem => item.PublicationDate)</h6>
+                        <p class="card-text">@item.Details</p>
+                        <a class="card-link" href="@Url.Action("GetFile","Reports_Publication",new {id=item .Reports_PublicationID})" target="_blank">
+                            View File
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+

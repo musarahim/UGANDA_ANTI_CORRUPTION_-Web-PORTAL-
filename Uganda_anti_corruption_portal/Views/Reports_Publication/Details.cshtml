@@ -1,0 +1,56 @@
+﻿@model Uganda_anti_corruption_portal.Models.Reports_Publication
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="adminback">
+    <h2>Details of  @Html.DisplayFor(model => model.Title)</h2>
+
+    <div>
+
+        <hr />
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PublicationDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PublicationDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Details)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Details)
+            </dd>
+            <dt>
+                Report
+            </dt>
+
+            <dd>
+                <ifram src="@Url.Action("GetFile","Reports_Publication",new {ID=Model.Reports_PublicationID})" width="200" height="200">
+                    <a href="@Url.Action("GetFile","Reports_Publication",new {ID=Model.Reports_PublicationID})" target="_blank">View File</a>
+                </ifram>
+
+            </dd>
+
+        </dl>
+
+        @*<a href="@Url.Action("GetFile","Reports_Publication",new {ID=Model.Reports_PublicationID})">test pdf</a>*@
+
+    </div>
+    <p>
+        @*@Html.ActionLink("Edit", "Edit", new { id = Model.Reports_PublicationID })*@
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

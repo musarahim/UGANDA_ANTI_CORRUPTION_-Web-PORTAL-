@@ -71,6 +71,7 @@ namespace Uganda_anti_corruption_portal.Controllers
         {
             if (!ModelState.IsValid)
             {
+                
                 return View(model);
             }
 
@@ -80,6 +81,10 @@ namespace Uganda_anti_corruption_portal.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    if (model.Email == "pr@igg.go.ug")
+                    {
+                        RedirectToAction("Administration", "Home");
+                    }
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

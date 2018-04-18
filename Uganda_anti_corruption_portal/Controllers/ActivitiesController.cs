@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -56,7 +57,7 @@ namespace Uganda_anti_corruption_portal.Controllers
         }
 
         //GET: Image method
-        public FileContentResult getImage(int ID)
+        public FileResult getImage(int ID)
         {
             var activity = db.activities.Find(ID);
             if (activity != null)
@@ -107,15 +108,17 @@ namespace Uganda_anti_corruption_portal.Controllers
         {
             if (ModelState.IsValid)
             {
-             
-                
-                if (Image != null)
+
+                String FileExt = Path.GetExtension(Image.FileName).ToUpper();
+                if ((Image != null && FileExt == ".JPEG")||(Image!=null && FileExt==".PNG")|| (Image != null && FileExt == ".BPM") || (Image != null && FileExt == ".JPG"))
+
                 {
                     //image data
                     activity.ImageType = Image.ContentType;
                     activity.ImageData = new byte[Image.ContentLength];
                     Image.InputStream.Read(activity.ImageData, 0, Image.ContentLength);
-                }
+               
+               
                 var UserId = User.Identity.GetUserId();
                 var ContributorID = db.Contributors.Where(u => u.ApplicationUserId == UserId).First().ContributorID;
                 activity.ContributorID = ContributorID;
@@ -123,6 +126,11 @@ namespace Uganda_anti_corruption_portal.Controllers
                 db.SaveChanges();
                 TempData["notice"] = "Successfully inserted one Step";
                 return RedirectToAction("Create");
+                }
+            else
+            {
+                ViewBag.FileStatus = "Invalid file format.Please insert only picture files";
+            }
             }
 
             ViewBag.ActivityCategoryID = new SelectList(db.ActivityCategories, "ActivityCategoryID", "NameOfService", activity.ActivityCategoryID);
@@ -157,16 +165,26 @@ namespace Uganda_anti_corruption_portal.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (Image != null)
-                {
-                    //image data
-                    activity.ImageType = Image.ContentType;
-                    activity.ImageData = new byte[Image.ContentLength];
-                    Image.InputStream.Read(activity.ImageData, 0, Image.ContentLength);
-                }
+                String FileExt = Path.GetExtension(Image.FileName).ToUpper();
+                if ((Image != null && FileExt == ".JPEG") || (Image != null && FileExt == ".PNG") || (Image != null && FileExt == ".BPM") || (Image != null && FileExt == ".JPG"))
+
+                    {
+                        //image data
+                       activity.ImageType = Image.ContentType;
+                activity.ImageData = new byte[Image.ContentLength];
+                Image.InputStream.Read(activity.ImageData, 0, Image.ContentLength);
+                var UserId = User.Identity.GetUserId();
+                var ContributorID = db.Contributors.Where(u => u.ApplicationUserId == UserId).First().ContributorID;
+                activity.ContributorID = ContributorID;
                 db.Entry(activity).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                TempData["Updatenotice"] = "Successfully updated! ";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.FileStatus = "Invalid file format.Please insert only picture files";
+                }
             }
             ViewBag.ActivityCategoryID = new SelectList(db.ActivityCategories, "ActivityCategoryID", "NameOfService", activity.ActivityCategoryID);
             return View(activity);

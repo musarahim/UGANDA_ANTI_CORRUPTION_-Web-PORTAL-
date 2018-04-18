@@ -24,6 +24,7 @@ namespace Uganda_anti_corruption_portal.Models
         public string ImageType { get; set; }
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
+        [ForeignKey("Contributor")]
         [Required]
         public int ContributorID { get; set; }
         public virtual Contributor Contributor { get; set; }

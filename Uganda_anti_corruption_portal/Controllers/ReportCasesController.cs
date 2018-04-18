@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -15,6 +16,7 @@ namespace Uganda_anti_corruption_portal.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: ReportCases
+        [Authorize(Users = "pr@igg.go.ug")]
         public ActionResult Index()
         {
             return View(db.ReportCases.ToList());
@@ -62,6 +64,7 @@ namespace Uganda_anti_corruption_portal.Controllers
 
 
         // GET: ReportCases/Details/5
+        [Authorize(Users = "pr@igg.go.ug")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -87,12 +90,12 @@ namespace Uganda_anti_corruption_portal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ReportCaseID,Phone,Contact,Description")] ReportCase reportCase, HttpPostedFileBase Image, HttpPostedFileBase Video, HttpPostedFileBase Audio)
+        public ActionResult Create([Bind(Include = "ReportCaseID,Phone,Title,Description")] ReportCase reportCase, HttpPostedFileBase Image, HttpPostedFileBase Video, HttpPostedFileBase Audio)
         {
             if (ModelState.IsValid)
             {
-                if (Image != null)
-                {
+              //  String FileExt = Path.GetExtension(Image.FileName).ToUpper();
+                if (Image != null ){
                     //image data
                     reportCase.ImageType = Image.ContentType;
                     reportCase.ImageData = new byte[Image.ContentLength];
@@ -114,13 +117,15 @@ namespace Uganda_anti_corruption_portal.Controllers
                 }
                 db.ReportCases.Add(reportCase);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                TempData["notice"] = "We have received your complaint.We shall contact you for more information";
+                return RedirectToAction("Create");
             }
 
             return View(reportCase);
         }
 
         // GET: ReportCases/Edit/5
+        [Authorize(Users = "pr@igg.go.ug")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -138,6 +143,7 @@ namespace Uganda_anti_corruption_portal.Controllers
         // POST: ReportCases/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Users = "pr@igg.go.ug")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ReportCaseID,Phone,Contact,Description")] ReportCase reportCase, HttpPostedFileBase Image, HttpPostedFileBase Video, HttpPostedFileBase Audio)
@@ -173,6 +179,7 @@ namespace Uganda_anti_corruption_portal.Controllers
         }
 
         // GET: ReportCases/Delete/5
+        [Authorize(Users = "pr@igg.go.ug")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -188,6 +195,7 @@ namespace Uganda_anti_corruption_portal.Controllers
         }
 
         // POST: ReportCases/Delete/5
+        [Authorize(Users = "pr@igg.go.ug")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

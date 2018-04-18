@@ -10,11 +10,13 @@ using Uganda_anti_corruption_portal.Models;
 
 namespace Uganda_anti_corruption_portal.Controllers
 {
+    [Authorize(Users = "pr@igg.go.ug")]
     public class ContributorsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Contributors
+      
         public ActionResult Index()
         {
             return View(db.Contributors.ToList());

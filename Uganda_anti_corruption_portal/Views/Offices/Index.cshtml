@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Uganda_anti_corruption_portal.Models.Office>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div  class=" jumbotron backgroundcontent">
+    <h2>Our Offices</h2>
+
+
+    <table class="table table-responsive-md">
+        <tr>
+            @{
+                int cnt = 0;
+
+                foreach (var item in Model)
+                {
+                    if (cnt++ % 3 == 0)
+                    {
+                        @:</tr><tr>
+                    }
+
+                    @: <td>
+                    
+                        <div class="row col-md-12">
+                            <ul style="list-style-type:none;" class="responsive">
+                                <li> <b style="color:darkgreen;"> @Html.DisplayFor(modelItem => item.OfficeName)</b></li>
+                                <li style="text-align:left;">@Html.DisplayFor(modelItem => item.PhysicalLocation)</li>
+                                <li style="text-align:left;">P.O.Box: @Html.DisplayFor(modelItem => item.BoxNumber)</li>
+                                <li style="text-align:left;">@Html.DisplayFor(modelItem => item.District)</li>
+                                <li style="text-align:left;">Tel: @Html.DisplayFor(modelItem => item.TelNo)</li>
+                                <li style="text-align:left;">  <a style="color:white;" href="mailto:@item.Email">@item.Email</a> </li>
+                                <li style="text-align:left;">Fax: @Html.DisplayFor(modelItem => item.Fax)</li>
+                            </ul>
+                        </div>
+                        @:</td>
+
+
+
+
+                }
+                @:</tr>
+            }
+        </table>
+    </div>

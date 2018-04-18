@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Administration";
+}
+
+<h2>Administration</h2>
+<div class="row" style="margin-bottom:12px;">
+    <div class="col-md-6" style="margin-bottom:12px;">
+        <a href="@Url.Action("Index","Contributors")" class="btn btn-primary btn-large btn-block"><span></span> Manage Contributors</a>
+        <a href="@Url.Action("Index","ActivityCategories")" class="btn btn-primary btn-large btn-block"><span ></span> Government services</a>
+        <a href="@Url.Action("Index","Activities")" class="btn btn-primary btn-large btn-block"><span ></span> Manage Users' contibutions</a>
+        <a href="@Url.Action("Index","ReportCases")" class="btn btn-primary btn-large btn-block"><span ></span> View Reported Cases</a>
+    </div>
+    <div class="col-md-6" style="margin-bottom:12px;">
+        <a href="@Url.Action("Admin","Offices")" class="btn btn-primary btn-large btn-block"><span></span>Offices</a>
+        <a href="@Url.Action("Index","Cases")" class="btn btn-primary btn-large btn-block"><span ></span>Court Cases</a>
+        <a href="@Url.Action("Index","Reports_Publication")" class="btn btn-primary btn-large btn-block"><span></span>Reports and Publications</a>
+        <a href="@Url.Action("Index","Enquiries")" class="btn btn-primary btn-large btn-block"><span></span>Enquiries</a>
+
+    </div>
+</div>
+

@@ -1,0 +1,59 @@
+﻿@model Uganda_anti_corruption_portal.Models.Case
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="adminback">
+
+    <h2>Details of case @Html.DisplayFor(model => model.CaseRef)</h2>
+
+    <div>
+        <hr />
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(model => model.CaseRef)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CaseRef)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CaseStatus)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CaseStatus)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CaseCategory)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CaseCategory)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.UpdatedDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UpdatedDate)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.CaseID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

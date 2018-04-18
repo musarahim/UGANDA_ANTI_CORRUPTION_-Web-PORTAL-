@@ -41,5 +41,21 @@ namespace Uganda_anti_corruption_portal.Models
         public System.Data.Entity.DbSet<Uganda_anti_corruption_portal.Models.ActivityCategory> ActivityCategories { get; set; }
 
         public System.Data.Entity.DbSet<Uganda_anti_corruption_portal.Models.ReportCase> ReportCases { get; set; }
+
+        public System.Data.Entity.DbSet<Uganda_anti_corruption_portal.Models.Case> Cases { get; set; }
+
+        public System.Data.Entity.DbSet<Uganda_anti_corruption_portal.Models.Office> Offices { get; set; }
+
+        public System.Data.Entity.DbSet<Uganda_anti_corruption_portal.Models.Reports_Publication> Reports_Publication { get; set; }
+
+        public System.Data.Entity.DbSet<Uganda_anti_corruption_portal.Models.Enquiry> Enquiries { get; set; }
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Contributor>().
+        //        HasOptional(c => c.Activities)
+        //        .WithMany().
+        //        WillCascadeOnDelete(true);
+        //    base.OnModelCreating(modelBuilder);
+        //}
     }
 }

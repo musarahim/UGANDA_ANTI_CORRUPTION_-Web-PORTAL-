@@ -1,49 +1,100 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<!doctype html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@ViewBag.Title uganda anti-corruption portal</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            @*<div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                </div>*@
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Public Services", "Activity", "Activities")</li>
+  
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color:black;">
+        <a class="navbar-brand active" href="@Url.Action("Index","Home")"> <div style="color:yellow;">UG</div></a>
+        <button style="color:white;" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-                </ul>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="@Url.Action("Index","Home")">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("About","Home")">About us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Create","ReportCases")">Report a Case</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Activity","Activities")">Public services</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="@Url.Action("Index","Reports_Publications")" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Publications
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color:darkgoldenrod;">
+                        <a class="dropdown-item" href="@Url.Action("Legislation","Reports_Publication")">Legislations</a>
+                        <a class="dropdown-item" href="@Url.Action("Reports","Reports_Publication")">Reports</a>
+                        <a class="dropdown-item" href="@Url.Action("Publications","Reports_Publication")"> Publication</a>
+                    </div>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="@Url.Action("Index","Cases")" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Court Cases
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color:darkgoldenrod;">
+                        <a class="dropdown-item" href="@Url.Action("OnGoingCrimalCases","Cases")">Ongoing Criminal Cases</a>
+                        <a class="dropdown-item" href="@Url.Action("AppealedCrimalCases","Cases")"> Appealed Criminal Cases</a>
+                        <a class="dropdown-item" href="@Url.Action("ConcludedCrimalCases","Cases")">Concluded Criminal Cases</a>
+                        <div role="separator" class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="@Url.Action("OnGoingCivilCases","Cases")">OngoingCivilCases</a>
+                        <a class="dropdown-item" href="@Url.Action("AppealedCivilCases","Cases")">Appealed Civil Cases</a>
+                        <a class="dropdown-item" href="@Url.Action("ConcludedCivilCases","Cases")">Concluded Civil Cases</a>
+
+                    </div>
+
+
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="@Url.Action("Index","Offices")" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Contact us
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color:darkgoldenrod;">
+                        <a class="dropdown-item" href="@Url.Action("Index","Offices")">Our Oficces</a>
+                        <a class="dropdown-item" href="@Url.Action("Create","Enquiries")"> Equire</a>
+                    </div>
+                </li>
+            </ul>
+            
                 @Html.Partial("_LoginPartial")
-            </div>
+           
         </div>
-    </div>
+    </nav>
+
+
+
     <div class="container body-content">
         @RenderBody()
 
         <footer>
-                <p id="footerp" > <b>&copy;Copyright @DateTime.Now.Year Uganda anti-corruption portal</b></p>
+            <p id="footerp"> <b>&copy;Copyright @DateTime.Now.Year Uganda anti-corruption portal</b></p>
         </footer>
-        
-          
-</div> 
-    
+
+
+    </div>
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    
+
+    </script>
 </body>
 </html>

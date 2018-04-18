@@ -16,7 +16,7 @@ namespace Uganda_anti_corruption_portal.Controllers
             ViewBag.SelectedCategory = category;
             IEnumerable<string> categories = db.ActivityCategories.
                 Select(x => x.Category).Distinct().OrderBy(x => x);
-            return PartialView(categories);
+            return PartialView("FlexMenu", categories);
         }
     }
 }

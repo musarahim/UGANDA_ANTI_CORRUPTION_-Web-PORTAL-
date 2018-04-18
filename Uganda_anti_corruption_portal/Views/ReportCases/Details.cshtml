@@ -3,68 +3,69 @@
 @{
     ViewBag.Title = "Details";
 }
+<div class="adminback">
+    <h2>Details</h2>
 
-<h2>Details</h2>
+    <div>
+        <h4>Complaint</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
 
-<div>
-    <h4>ReportCase</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Contact)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Contact)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt>
+                Image
+            </dt>
+            <dd>
+                <img class="img-thumbnail" width="100" height="100"
+                     src="@Url.Action("getImage","ReportCases",new {ID=Model.ReportCaseID})" />
+            </dd>
+            <dt>
+                Your Video
+            </dt>
+            <dd>
+                @*<iframe width="560" height="315" src="@Url.Action("getVideo","ReportCases",new { ID = Model.ReportCaseID })" frameborder="0" allowfullscreen></iframe>*@
+                <video width="560" height="315" src="@Url.Action("getVideo","ReportCases",new { ID = Model.ReportCaseID })" controls />
+                @*<embed width="560" height="315" src="@Url.Action("getVideo","ReportCases",new { ID = Model.ReportCaseID })" />*@
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt>
-            Image
-        </dt>
-        <dd>
-            <img class="img-thumbnail" width="100" height="100"
-                 src="@Url.Action("getImage","ReportCases",new {ID=Model.ReportCaseID})" />
-        </dd>
-        <dt>
-            Your Video
-        </dt>
-        <dd>
-            @*<iframe width="560" height="315" src="@Url.Action("getVideo","ReportCases",new { ID = Model.ReportCaseID })" frameborder="0" allowfullscreen></iframe>*@
-            <video width="560" height="315" src="@Url.Action("getVideo","ReportCases",new { ID = Model.ReportCaseID })" controls />
-            @*<embed width="560" height="315" src="@Url.Action("getVideo","ReportCases",new { ID = Model.ReportCaseID })" />*@
-        </dd>
+            <dt>
+                Your Audio or voice recoding
+            </dt>
 
-        <dt>
-            Your Audio or voice recoding
-        </dt>
+            <dd>
+                @*<audio controls src="@Url.Action("getAudio", "ReportCases",new { ID = Model.ReportCaseID })" >
 
-        <dd>
-            @*<audio controls src="@Url.Action("getAudio", "ReportCases",new { ID = Model.ReportCaseID })" >
-                
-            </audio>*@
-            <audio controls>
-                <source src="@Url.Action("getAudio", "ReportCases",new { ID = Model.ReportCaseID })" type="audio/mp3" />
-            </audio> 
-        </dd>
+                    </audio>*@
+                <audio controls>
+                    <source src="@Url.Action("getAudio", "ReportCases",new { ID = Model.ReportCaseID })" type="audio/mp3" />
+                </audio>
+            </dd>
 
-    </dl>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ReportCaseID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ReportCaseID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

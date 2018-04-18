@@ -1,74 +1,107 @@
 ﻿@model Uganda_anti_corruption_portal.Models.ReportCase
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Complaints";
 }
-
-<h2>Create</h2>
-
-
-@using (Html.BeginForm("Create", "ReportCases", FormMethod.Post, new { enctype = "multipart/form-data"})) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>ReportCase</h4>
+<div class=" jumbotron backgroundcontent">
+    <h2>Report a Case to the IGG</h2>
+    <p style="color:darkgreen;">
+        Information supplied will be treated with confidentiality. The IGG Office shall not disclose the identities of any individuals
+        who report cases to this office
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    </p>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Contact, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Contact, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <div class="row">
+       
+        <div class="col-md-6">
+            @using (Html.BeginForm("Create", "ReportCases", FormMethod.Post, new { enctype = "multipart/form-data", id = "myform" }))
+        {
+            @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.Label("Image", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="file" name="Image" size="40" />
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.Label("Video", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="file" name="Video" size="40" />
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.Label("Audio", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="file" name="Audio" size="40" />
-            </div>
-        </div>
+            <div class="form-horizontal">
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control col-md-12" } })
+                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2 " })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control col-md-12" } })
+                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control col-md-12" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Image", new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="file" name="Image" class="for" accept="image/*" size="40" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Video", new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="file" name="Video" class="form-control-file" accept="video/*" size="40" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Audio", new { @class = "control-label col-md-6" })
+                    <div class="col-lg-10 custom-file">
+                        <input type="file" name="Audio" class="form-control-file" id="customFile" accept="audio/*" size="40" />
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Submit" class="btn btn-default" />
+                    </div>
+                </div>
             </div>
+    }
+        </div>
+        <div class="col-md-6">
+            @if (TempData["notice"] != null)
+        {
+            <p class="alert alert-success" id="successmessage">@TempData["notice"]</p>
+    }
+            <p>
+                You can report a case from here. Any information supplied to this website is totally confidential and no information 
+                shall be disclosed.
+            </p>
+            <p>
+                Please add your phone number to enable us easily contact you but its not obligatory,
+                add evidence like images, recorded voice and video. <br />
+                You can choose to add any of the above or all of them if you have them.
+            </p>
+            <p>
+                Feel free to report at any time and any but if you are not within Uganda then don't include your phone number
+                because we only require numbers from Uganda.<br />
+                The report about field can be left empty but you have to fill the description field cause its required for us 
+                to understand what exactly you are reporting about.
+            </p>
+            <p>
+                For more information, Visit us at <a style="color:white;" href="@Url.Action("Index","Offices")">Our Oficces</a> or you can send us an Enquiry from
+                <a style="color:white;" href="@Url.Action("Create", "Enquiries")"> Equire</a>.
+            </p>
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+ 

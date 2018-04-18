@@ -3,55 +3,57 @@
 @{
     ViewBag.Title = "Details";
 }
+<div class="adminback">
 
-<h2>Details</h2>
+    <h2>Details</h2>
 
-<div>
-    <h4>Activity</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ActivityCateory.NameOfService)
-        </dt>
+    <div>
+        <h4>service</h4>
+        <hr />
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(model => model.ActivityCateory.NameOfService)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ActivityCateory.NameOfService)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ActivityCateory.NameOfService)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ActivityNo)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.ActivityNo)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ActivityNo)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ActivityNo)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NameOfActivity)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.NameOfActivity)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NameOfActivity)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.NameOfActivity)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt>
-            Image
-        </dt>
-        <dd>
-            <img class="img-thumbnail" width="100" height="100"
-                 src="@Url.Action("getImage","Activities",new {ID=Model.ActivityID})" />
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt>
+                Image
+            </dt>
+            <dd>
+                <img class="img-thumbnail" width="100" height="100"
+                     src="@Url.Action("getImage","Activities",new {ID=Model.ActivityID})" />
+            </dd>
 
-    </dl>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ActivityID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ActivityID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

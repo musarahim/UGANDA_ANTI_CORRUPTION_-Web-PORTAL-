@@ -25,7 +25,7 @@ namespace Uganda_anti_corruption_portal
                 {
                   controller = "Activities",
                   action = "Activity",
-                  category = (string)null,
+                  category = "Health",
                         page = 1 });
             routes.MapRoute(null,
             "Page{page}",

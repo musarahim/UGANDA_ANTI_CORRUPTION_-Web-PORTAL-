@@ -1,0 +1,67 @@
+﻿@model Uganda_anti_corruption_portal.Models.Enquiry
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="adminback">
+    <h2>Details of Enquiry from  @Html.DisplayFor(model => model.Email). You can click on the email to reply</h2>
+
+    <div>
+        <h4>Enquiry</h4>
+        <hr style="background-color:white;" />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.EnquiryDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EnquiryDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Subject)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Subject)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Message)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Message)
+            </dd>
+
+        </dl>
+        <hr style="background-color:white;" />
+    </div>
+    <p>
+        @*@Html.ActionLink("Edit", "Edit", new { id = Model.EnquiryID }) |*@
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

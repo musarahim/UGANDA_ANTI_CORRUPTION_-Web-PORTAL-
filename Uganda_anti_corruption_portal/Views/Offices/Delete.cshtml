@@ -1,0 +1,82 @@
+﻿@model Uganda_anti_corruption_portal.Models.Office
+
+@{
+    ViewBag.Title = "Delete";
+}
+<div class="adminback">
+
+    <h2>Delete</h2>
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Office</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-md-2">
+                @Html.DisplayNameFor(model => model.OfficeName)
+            </dt>
+
+            <dd class="col-md-10">
+                @Html.DisplayFor(model => model.OfficeName)
+            </dd>
+
+            <dt class="col-md-2">
+                @Html.DisplayNameFor(model => model.PhysicalLocation)
+            </dt>
+
+            <dd class="col-md-10">
+                @Html.DisplayFor(model => model.PhysicalLocation)
+            </dd>
+
+            <dt class="col-md-2">
+                @Html.DisplayNameFor(model => model.BoxNumber)
+            </dt>
+
+            <dd class="col-md-10">
+                @Html.DisplayFor(model => model.BoxNumber)
+            </dd>
+
+            <dt class="col-md-2">
+                @Html.DisplayNameFor(model => model.District)
+            </dt>
+
+            <dd class="col-md-10">
+                @Html.DisplayFor(model => model.District)
+            </dd>
+
+            <dt class="col-md-2">
+                @Html.DisplayNameFor(model => model.TelNo)
+            </dt>
+
+            <dd class="col-md-10">
+                @Html.DisplayFor(model => model.TelNo)
+            </dd>
+            <dt class="col-md-2">
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd class="col-md-10">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt class="col-md-2">
+                @Html.DisplayNameFor(model => model.Fax)
+            </dt>
+
+            <dd class="col-md-10">
+                @Html.DisplayFor(model => model.Fax)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Admin")
+            </div>
+        }
+    </div>
+</div>

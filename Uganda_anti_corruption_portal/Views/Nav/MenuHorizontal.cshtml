@@ -1,0 +1,18 @@
+﻿@model IEnumerable<string>
+<div class="btn-group btn-group-sm btn-group-justified">
+    @Html.ActionLink("Public Services", "Activity", "Activities", new { @class = "btn btn-default btn-sm" })
+    @foreach (var link in Model)
+    {
+        @Html.RouteLink(link, new
+        {
+            controller = "Activities",
+            action = "Activity",
+            category = link,
+            page = 1
+        }, new
+        {
+            @class = "btn btn-default btn-sm"
+        + (link == ViewBag.SelectedCategory ? " btn-info" : "")
+        })
+    }
+</div>

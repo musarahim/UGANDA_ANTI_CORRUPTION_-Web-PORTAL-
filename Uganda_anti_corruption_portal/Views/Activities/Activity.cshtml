@@ -5,28 +5,28 @@
 }
 
 
-<div class="row panel" style="background-color:darkgoldenrod;">
-    <div id="categories" class="col-xs-3"  style="margin-top:8px";>
-        @Html.Action("Menu","Nav")
-    </div>
-    <div class="col-xs-8">
-
-        <h2>PUBLIC SERVICES IN MOST GOVERNMENT ORGANISATIONS</h2>
+<div class=" jumbotron backgroundcontent">
+  
+    <div class="row panel" style="background-color:darkgoldenrod;">
+        <div class="col-sm-3 hidden-xs">
+            @Html.Action("Menu", "Nav")
+        </div>
+        <div class="col-xs-12 col-sm-8">
+            <h2>PUBLIC SERVICES IN MOST GOVERNMENT ORGANISATIONS</h2>
 
 
             @foreach (var item in Model.Activities)
-            {  <h2>@item.ActivityCateory.NameOfService in @item.Contributor.Location</h2>
-            <h3>Added by: @item.Contributor.Name</h3>
-            @Html.Partial("_ServicesPartial", item)
-            @*<h2>@item.ActivityCateory.NameOfService in @item.Contributor.Location</h2>
-            <h3>Added by: @item.Contributor.Name</h3>
-            <p>@item.ActivityNo</p>
-            <p>@item.NameOfActivity</p>
-            <p>@item.Description</p>*@
-            }
-        <div  class="btn-group-xs pull-right">
-            @Html.PageLinks(Model.PagingInfo, x => Url.Action("Activity", new { page = x, category = Model.CurrentCategory }))
-        </div>   
-        
+        {
+                <h2>@item.ActivityCateory.NameOfService in @item.Contributor.Location</h2>
+        <h3>Added by: @item.Contributor.Name</h3>
+        @Html.Partial("_ServicesPartial", item)
+      
+}
+            <div class="btn-group-xs btn-group-toggle float-right">
+                @Html.PageLinks(Model.PagingInfo, x => Url.Action("Activity", new { page = x, category = Model.CurrentCategory }))
+            </div>
+           
+
+        </div>
     </div>
-</div>
+    </div>
