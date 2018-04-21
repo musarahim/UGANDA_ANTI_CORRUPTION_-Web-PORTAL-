@@ -10,8 +10,8 @@
     {
         <div class="card" style="width:90%;">
             <div class="card-body">
-                <h5 class="card-title"> @item.CaseRef</h5>
-                <h6 class="card-subtitle"> Updated on:  @Html.DisplayNameFor(model => model.UpdatedDate)</h6>
+                <h5 class="card-title"><b>@item.CaseRef</b> </h5>
+                <h6 class="card-subtitle"><b>Updated on:</b>  @Html.DisplayFor(modelItem => item.UpdatedDate)</h6>
                 <p class="card-text">@item.Description</p>
             </div>
         </div>

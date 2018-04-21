@@ -567,6 +567,7 @@
     <Content Include="Views\Reports_Publication\Legislation.cshtml" />
     <Content Include="Views\Reports_Publication\Reports.cshtml" />
     <Content Include="Views\Reports_Publication\Publications.cshtml" />
+    <Content Include="Views\Activities\AdminIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

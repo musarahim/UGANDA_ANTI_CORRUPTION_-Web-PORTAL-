@@ -8,14 +8,7 @@
 
 
 <p>
-    <div class="row">
-        <div class="col-md-2">
-            <a href="@Url.Action("Administration","Home")" class="btn btn-primary">Back to Admin page</a>
-        </div>
-        <div class="col-md-2">
-            <a href="@Url.Action("Create",new {ContributorID = ViewBag.ContributorID })" class="btn btn-primary">Create New</a>
-        </div>
-    </div>
+    <a href="@Url.Action("Create",new {ContributorID = ViewBag.ContributorID })" class="btn btn-primary">Create New</a>
 </p>
 @if(TempData["Updatenotice"] != null)
 {

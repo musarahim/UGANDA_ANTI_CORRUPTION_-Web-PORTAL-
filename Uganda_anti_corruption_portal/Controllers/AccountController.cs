@@ -81,9 +81,10 @@ namespace Uganda_anti_corruption_portal.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    if (model.Email == "pr@igg.go.ug")
+                    var UserName = model.Email;
+                    if (UserName == "pr@igg.go.ug")
                     {
-                        RedirectToAction("Administration", "Home");
+                        return RedirectToAction("Administration", "Home");
                     }
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:

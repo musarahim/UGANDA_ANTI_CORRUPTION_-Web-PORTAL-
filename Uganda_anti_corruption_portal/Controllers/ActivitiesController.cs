@@ -69,6 +69,12 @@ namespace Uganda_anti_corruption_portal.Controllers
                 return null;
             }
         }
+        [Authorize(Users = "pr@igg.go.ug")]
+        public ActionResult AdminIndex()
+        {
+            var activities = db.activities.Include(a => a.ActivityCateory).Include(a => a.Contributor).OrderBy(c => c.ContributorID).ThenBy(c => c.ActivityNo);
+                return View(activities.ToList());
+        }
 
         // GET: Activities/Details/5
         [Authorize]
