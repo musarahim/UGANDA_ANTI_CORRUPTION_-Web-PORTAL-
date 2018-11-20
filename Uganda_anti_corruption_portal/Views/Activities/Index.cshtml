@@ -3,58 +3,59 @@
 @{
     ViewBag.Title = "Index";
 }
+<div class="jumbotron backgroundcontent">
+    <h2 style="text-align:center;">List of steps you have added</h2>
 
-<h2 style="text-align:center;">List of steps you have added</h2>
 
-
-<p>
-    <a href="@Url.Action("Create",new {ContributorID = ViewBag.ContributorID })" class="btn btn-primary">Create New</a>
-</p>
-@if(TempData["Updatenotice"] != null)
-{
-    <p class="alert alert-success" id="successmessage">@TempData["Updatenotice"]</p>
-}
-<table class="table table-striped table-responsive-md table-dark">
-    <tbody>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ActivityCateory.NameOfService)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ActivityNo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NameOfActivity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th></th>
-        </tr>
-    </tbody>
-    @foreach (var item in Model)
+    <p>
+        <a href="@Url.Action("Create",new {ContributorID = ViewBag.ContributorID })" class="btn btn-primary">Create New</a>
+    </p>
+    @if (TempData["Updatenotice"] != null)
     {
-    <tbody>
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ActivityCateory.NameOfService)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ActivityNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NameOfActivity)
-            </td>
-            <td class="ellipsis">
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ActivityID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ActivityID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ActivityID })
-            </td>
-        </tr>
-    </tbody>
+        <p class="alert alert-success" id="successmessage">@TempData["Updatenotice"]</p>
     }
+    <table class="table table-striped table-responsive-md ">
+        <tbody>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ActivityCateory.NameOfService)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ActivityNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NameOfActivity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th></th>
+            </tr>
+        </tbody>
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ActivityCateory.NameOfService)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ActivityNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NameOfActivity)
+                    </td>
+                    <td class="ellipsis">
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ActivityID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ActivityID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ActivityID })
+                    </td>
+                </tr>
+            </tbody>
+        }
 
-</table>
+    </table>
+</div>

@@ -21,7 +21,26 @@ namespace Uganda_anti_corruption_portal.Controllers
         {
             return View(db.ReportCases.ToList());
         }
+        /// <summary>
+        /// Loads crystal reports
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
         // the image for the person
+        public ActionResult ReportedCasesReport()
+        {
+
+            var cases = db.ReportCases.ToList();
+            CrystalReports.ReportedCases report = new CrystalReports.ReportedCases();
+            report.Load();
+            report.SetDataSource(cases);
+            Stream stream = report.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            if (cases == null)
+            {
+                return HttpNotFound();
+            }
+            return File(stream, "application/pdf");
+        }
         public FileContentResult getImage(int ID)
         {
             var Report = db.ReportCases.Find(ID);

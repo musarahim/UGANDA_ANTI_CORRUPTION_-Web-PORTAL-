@@ -316,13 +316,16 @@ footer {
 .h2header{
    color:darkgreen;
 }
-.adminback{
-    background-color:#191818;
-    margin-top:12px;
-    color:white;
-    padding:12px;
-    margin-bottom:8px;
+.adminback {
+    background-color: darkgoldenrod;
+    margin-top: 12px;
+    color: white;
+    padding: 12px;
+    margin-bottom: 8px;
 }
 h5{
     color:darkgreen;
+}
+a{
+    color:white;
 }

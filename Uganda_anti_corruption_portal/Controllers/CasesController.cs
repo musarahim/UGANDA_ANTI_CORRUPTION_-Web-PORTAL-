@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -20,7 +21,25 @@ namespace Uganda_anti_corruption_portal.Controllers
         {
             return View(db.Cases.ToList());
         }
+        //ongoingcriminal cases report
+        public ActionResult OnGoingCriminalReport()
+        {
+
+            var onGoingCases = db.Cases.Where(c => c.CaseCategory == CaseCategory.Criminal).Where(c => c.CaseStatus == CaseStatus.OnGoing).OrderBy(c => c.UpdatedDate).ToList();
+            CrystalReports.OnGoingCriminalCases report = new CrystalReports.OnGoingCriminalCases();
+            report.Load();
+            report.SetDataSource(onGoingCases);
+            Stream stream = report.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            if (onGoingCases == null)
+            {
+                return HttpNotFound();
+            }
+            return File(stream, "application/pdf");
+        }
+
+
         //returns a list of all criminal cases
+
         public ActionResult CrimalCases()
         {
             var cases = db.Cases.Where(c => c.CaseCategory == CaseCategory.Criminal);
@@ -85,6 +104,7 @@ namespace Uganda_anti_corruption_portal.Controllers
         [Authorize(Users = "pr@igg.go.ug")]
         public ActionResult Create()
         {
+            ViewBag.OfficeID = new SelectList(db.Offices, "OfficeID", "OfficeName");
             return View();
         }
 
@@ -94,7 +114,7 @@ namespace Uganda_anti_corruption_portal.Controllers
         [Authorize(Users = "pr@igg.go.ug")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CaseID,CaseRef,CaseStatus,CaseCategory,Description,UpdatedDate")] Case @case)
+        public ActionResult Create([Bind(Include = "CaseID,CaseRef,CaseStatus,CaseCategory,Description,UpdatedDate,OfficeID")] Case @case)
         {
             if (ModelState.IsValid)
             {
@@ -102,7 +122,7 @@ namespace Uganda_anti_corruption_portal.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.OfficeID = new SelectList(db.Offices, "OfficeID", "OfficeName");
             return View(@case);
         }
 
@@ -119,6 +139,7 @@ namespace Uganda_anti_corruption_portal.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.OfficeID = new SelectList(db.Offices, "OfficeID", "OfficeName");
             return View(@case);
         }
 
@@ -128,7 +149,7 @@ namespace Uganda_anti_corruption_portal.Controllers
         [Authorize(Users = "pr@igg.go.ug")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CaseID,CaseRef,CaseStatus,CaseCategory,Description,UpdatedDate")] Case @case)
+        public ActionResult Edit([Bind(Include = "CaseID,CaseRef,CaseStatus,CaseCategory,Description,UpdatedDate,OfficeID")] Case @case)
         {
             if (ModelState.IsValid)
             {
@@ -136,6 +157,7 @@ namespace Uganda_anti_corruption_portal.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.OfficeID = new SelectList(db.Offices, "OfficeID", "OfficeName");
             return View(@case);
         }
 

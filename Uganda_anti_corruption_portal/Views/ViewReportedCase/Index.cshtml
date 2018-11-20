@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Uganda_anti_corruption_portal.Models.ViewReportedCase>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="adminback">
+    <h2 style="text-align:center;">IG List of All Reported Cases</h2>
+
+    <p>
+        @*@Html.ActionLink("Create New", "Create")*@
+        <div class="row">
+            <div class="col-md-2">
+                <a href="@Url.Action("Administration","Home")" class="btn btn-primary">Back to Admin page</a>
+            </div>
+            <div class="col-md-2">
+                <a href="@Url.Action("Create")" class="btn btn-primary">Add New</a>
+            </div>
+        </div>
+    </p>
+    <table class="table table-striped table-responsive-md table-dark">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReportCase.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Office.OfficeName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Comment)
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReportCase.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Office.OfficeName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Comment)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ViewReportedCaseID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ViewReportedCaseID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ViewReportedCaseID })
+                    </td>
+                </tr>
+            </tbody>
+        }
+
+    </table>
+</div>

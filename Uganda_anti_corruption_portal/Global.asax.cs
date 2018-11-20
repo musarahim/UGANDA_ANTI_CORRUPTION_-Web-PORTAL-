@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -15,6 +16,7 @@ namespace Uganda_anti_corruption_portal
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+            Database.SetInitializer<Models.ApplicationDbContext>(null);
 
             // Manually installed WebAPI 2.2 after making an MVC project.
             GlobalConfiguration.Configure(WebApiConfig.Register); // NEW way

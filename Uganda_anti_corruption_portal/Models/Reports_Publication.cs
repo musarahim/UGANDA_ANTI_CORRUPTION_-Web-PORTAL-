@@ -21,5 +21,7 @@ namespace Uganda_anti_corruption_portal.Models
         [Display(Name ="Upload File")]
         public string FileName { get; set; }
         public byte[] FileContent { get; set; }
+        public int OfficeID { get; set; }
+        public virtual Office Office { get; set; }
     }
 }

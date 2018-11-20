@@ -21,5 +21,9 @@ namespace Uganda_anti_corruption_portal.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         public string Fax { get; set; }
+        public virtual ICollection<Activity> Activities { get; set; }
+        public virtual ICollection<Case> Cases { get; set; }
+        public virtual ICollection<Reports_Publication> Reports_Publications { get; set; }
+        public virtual ICollection<ViewReportedCase> ViewReportedCases { get; set; }
     }
 }

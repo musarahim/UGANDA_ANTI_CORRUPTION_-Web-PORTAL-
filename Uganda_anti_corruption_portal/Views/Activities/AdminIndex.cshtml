@@ -4,64 +4,65 @@
     ViewBag.Title = "AdminIndex";
 }
 
-<h2>AdminIndex</h2>
+<div class="jumbotron backgroundcontent">
 
-<p>
-   
-    <div class="row">
-        <div class="col-md-2">
-            <a href="@Url.Action("Administration","Home")" class="btn btn-primary">Back to Admin page</a>
+    <p>
+
+        <div class="row">
+            <div class="col-md-2">
+                <a href="@Url.Action("Administration","Home")" class="btn btn-primary">Back to Admin page</a>
+            </div>
+            <div class="col-md-3">
+                <a href="@Url.Action("Create",new {ContributorID = ViewBag.ContributorID })" class="btn btn-primary">Create New</a>
+
+            </div>
         </div>
-    </div>
     </p>
-    <table class="table table-striped table-responsive-md table-dark">
+    <table class="table table-striped table-responsive-md ">
         <thead>
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.ActivityCateory.NameOfService)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Contributor.FirstName)
-                </th>
+
                 <th>
                     @Html.DisplayNameFor(model => model.ActivityNo)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.NameOfActivity)
                 </th>
-               
+
                 <th>
                     @Html.DisplayNameFor(model => model.Description)
                 </th>
                 <th></th>
             </tr>
-        </thead> 
+        </thead>
         @foreach (var item in Model)
         {
             <tbody>
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ActivityCateory.NameOfService)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Contributor.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ActivityNo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NameOfActivity)
-                </td>
-                <td class="ellipsis">
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ActivityID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ActivityID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ActivityID })
-                </td>
-            </tr>
-                </tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ActivityCateory.NameOfService)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ActivityNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NameOfActivity)
+                    </td>
+                    <td class="ellipsis">
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ActivityID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ActivityID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ActivityID })
+                    </td>
+                </tr>
+            </tbody>
         }
 
     </table>
+</div>

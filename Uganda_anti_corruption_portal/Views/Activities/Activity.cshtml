@@ -17,8 +17,8 @@
 
             @foreach (var item in Model.Activities)
         {
-                <h2>@item.ActivityCateory.NameOfService in @item.Contributor.Location</h2>
-        <h3>Added by: @item.Contributor.Name</h3>
+                <h2>@item.ActivityCateory.NameOfService</h2>
+        
         @Html.Partial("_ServicesPartial", item)
       
 }

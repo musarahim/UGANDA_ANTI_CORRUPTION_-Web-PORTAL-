@@ -2,21 +2,24 @@
 @{
     ViewBag.Title = "Administration";
 }
+<div class="jumbotron backgroundcontent">
+    <h2>Administration</h2>
+    <div class="row" style="margin-bottom:12px;">
+        <div class="col-md-6" style="margin-bottom:12px;">
+            <a href="@Url.Action("Index","Reporter")" class="btn btn-primary btn-large btn-block"><span></span> Reporters</a>
+            <a href="@Url.Action("Index","ActivityCategories")" class="btn btn-primary btn-large btn-block"><span></span> Government services</a>
+            <a href="@Url.Action("AdminIndex","Activities")" class="btn btn-primary btn-large btn-block"><span></span> Steps of accessing Gov't Servicss</a>
+            <a href="@Url.Action("Index","ReportCases")" class="btn btn-primary btn-large btn-block"><span></span> View Reported Cases</a>
+            <a href="@Url.Action("Admin","Offices")" class="btn btn-primary btn-large btn-block"><span></span>Offices</a>
+        </div>
+        <div class="col-md-6" style="margin-bottom:12px;">
+          
+            <a href="@Url.Action("Index","Cases")" class="btn btn-primary btn-large btn-block"><span></span>Court Cases</a>
+            <a href="@Url.Action("Index","Reports_Publication")" class="btn btn-primary btn-large btn-block"><span></span>Reports and Publications</a>
+            <a href="@Url.Action("Index","Enquiries")" class="btn btn-primary btn-large btn-block"><span></span>Enquiries</a>
+            <a href="@Url.Action("ReportedCasesReport","ReportCases")" class="btn btn-primary btn-large btn-block"><span></span>Reported Cases Report</a>
+            <a href="@Url.Action("OnGoingCriminalReport","Cases")" class="btn btn-primary btn-large btn-block"><span></span>OnGoing Crimainal Case Report</a>
 
-<h2>Administration</h2>
-<div class="row" style="margin-bottom:12px;">
-    <div class="col-md-6" style="margin-bottom:12px;">
-        <a href="@Url.Action("Index","Contributors")" class="btn btn-primary btn-large btn-block"><span></span> Manage Contributors</a>
-        <a href="@Url.Action("Index","ActivityCategories")" class="btn btn-primary btn-large btn-block"><span ></span> Government services</a>
-        <a href="@Url.Action("AdminIndex","Activities")" class="btn btn-primary btn-large btn-block"><span ></span> Manage Users' contibutions</a>
-        <a href="@Url.Action("Index","ReportCases")" class="btn btn-primary btn-large btn-block"><span ></span> View Reported Cases</a>
-    </div>
-    <div class="col-md-6" style="margin-bottom:12px;">
-        <a href="@Url.Action("Admin","Offices")" class="btn btn-primary btn-large btn-block"><span></span>Offices</a>
-        <a href="@Url.Action("Index","Cases")" class="btn btn-primary btn-large btn-block"><span ></span>Court Cases</a>
-        <a href="@Url.Action("Index","Reports_Publication")" class="btn btn-primary btn-large btn-block"><span></span>Reports and Publications</a>
-        <a href="@Url.Action("Index","Enquiries")" class="btn btn-primary btn-large btn-block"><span></span>Enquiries</a>
-
+        </div>
     </div>
 </div>
-

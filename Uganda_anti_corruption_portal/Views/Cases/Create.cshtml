@@ -54,6 +54,13 @@
                     @Html.ValidationMessageFor(model => model.UpdatedDate, "", new { @class = "text-danger" })
                 </div>
             </div>
+               <div class="form-group">
+                @Html.LabelFor(model => model.OfficeID, "IGG Office", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("OfficeID", null, htmlAttributes: new { @class = "form-control col-md-8" })
+                    @Html.ValidationMessageFor(model => model.OfficeID, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">

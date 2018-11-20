@@ -24,5 +24,9 @@ namespace Uganda_anti_corruption_portal.Models
         public string Description { get; set; }
         [Display(Name ="Date Updated:"),DataType(DataType.Date)]
         public DateTime UpdatedDate { get; set; }
+        [ForeignKey("Office")]
+        public int OfficeID { get; set; }
+        public virtual Office Office { get; set; }
+
     }
 }

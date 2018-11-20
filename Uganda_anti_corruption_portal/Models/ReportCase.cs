@@ -22,5 +22,7 @@ namespace Uganda_anti_corruption_portal.Models
         public string VideoType { get; set; }
         public byte[] AudioData { get; set; }
         public string AudioType { get; set; }
+        public virtual ICollection<Reporter> Reporters { get; set; }
+        public virtual ICollection<ViewReportedCase> ViewReportedCases { get; set; }
     }
 }

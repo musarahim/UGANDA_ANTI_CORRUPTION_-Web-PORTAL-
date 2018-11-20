@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using MySql.Data.Entity;
 
 namespace Uganda_anti_corruption_portal.Models
 {
@@ -21,11 +22,16 @@ namespace Uganda_anti_corruption_portal.Models
             return userIdentity;
         }
     }
+    [DbConfigurationType(typeof(MySqlEFConfiguration))]
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-    {
+    { 
+        static ApplicationDbContext()
+        {
+            Database.SetInitializer(new MySqlInitializer());
+        }
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("DefaultConnection",throwIfV1Schema:false)
         {
         }
 
@@ -49,6 +55,8 @@ namespace Uganda_anti_corruption_portal.Models
         public System.Data.Entity.DbSet<Uganda_anti_corruption_portal.Models.Reports_Publication> Reports_Publication { get; set; }
 
         public System.Data.Entity.DbSet<Uganda_anti_corruption_portal.Models.Enquiry> Enquiries { get; set; }
+        public System.Data.Entity.DbSet<Uganda_anti_corruption_portal.Models.Reporter> Reporters { get; set; }
+        public System.Data.Entity.DbSet<Uganda_anti_corruption_portal.Models.ViewReportedCase> ViewReportedCases { get; set; }
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)
         //{
         //    modelBuilder.Entity<Contributor>().

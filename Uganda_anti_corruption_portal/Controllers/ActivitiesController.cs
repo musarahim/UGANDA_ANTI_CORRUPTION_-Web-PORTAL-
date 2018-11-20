@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -27,9 +27,9 @@ namespace Uganda_anti_corruption_portal.Controllers
             {
                 Contributors = db.Contributors.ToList().Distinct(),
                 Activities = db.activities
-                .Include(a => a.Contributor)
+                .Include(a => a.Office)
                  .Include(a => a.ActivityCateory).Where(c => category == null || c.ActivityCateory.Category == category )
-                 .OrderBy(c => c.ContributorID).ThenBy(c=>c.ActivityNo).ToList()
+                 .OrderBy(c => c.OfficeID).ThenBy(c=>c.ActivityNo).ToList()
                  .Skip((page - 1) * PageSize).Take(PageSize),
                 PagingInfo = new PagingInfo
                 {
@@ -52,7 +52,7 @@ namespace Uganda_anti_corruption_portal.Controllers
             var UserId = User.Identity.GetUserId();
             var ContributorID = db.Contributors.Where(u => u.ApplicationUserId == UserId).First().ContributorID;
             ViewBag.ContributorID = ContributorID;
-            var activities = db.activities.Include(a => a.ActivityCateory).Where(a=>a.ContributorID==ContributorID);
+            var activities = db.activities.Include(a => a.ActivityCateory).Where(a=>a.OfficeID==ContributorID);
             return View(activities.ToList());
         }
 
@@ -72,7 +72,7 @@ namespace Uganda_anti_corruption_portal.Controllers
         [Authorize(Users = "pr@igg.go.ug")]
         public ActionResult AdminIndex()
         {
-            var activities = db.activities.Include(a => a.ActivityCateory).Include(a => a.Contributor).OrderBy(c => c.ContributorID).ThenBy(c => c.ActivityNo);
+            var activities = db.activities.Include(a => a.ActivityCateory).Include(a => a.Office).OrderBy(c => c.OfficeID).ThenBy(c => c.ActivityNo);
                 return View(activities.ToList());
         }
 
@@ -97,7 +97,7 @@ namespace Uganda_anti_corruption_portal.Controllers
         public ActionResult Create()
         {
           
-              var UserId = User.Identity.GetUserId();
+            var UserId = User.Identity.GetUserId();
             var ContributorID = db.Contributors.Where(u => u.ApplicationUserId == UserId).First().ContributorID;
             ViewBag.ContributorID = ContributorID;
             ViewBag.ActivityCategoryID = new SelectList(db.ActivityCategories, "ActivityCategoryID", "NameOfService");
@@ -127,7 +127,7 @@ namespace Uganda_anti_corruption_portal.Controllers
                
                 var UserId = User.Identity.GetUserId();
                 var ContributorID = db.Contributors.Where(u => u.ApplicationUserId == UserId).First().ContributorID;
-                activity.ContributorID = ContributorID;
+                activity.OfficeID = ContributorID;
                 db.activities.Add(activity);
                 db.SaveChanges();
                 TempData["notice"] = "Successfully inserted one Step";
@@ -181,7 +181,7 @@ namespace Uganda_anti_corruption_portal.Controllers
                 Image.InputStream.Read(activity.ImageData, 0, Image.ContentLength);
                 var UserId = User.Identity.GetUserId();
                 var ContributorID = db.Contributors.Where(u => u.ApplicationUserId == UserId).First().ContributorID;
-                activity.ContributorID = ContributorID;
+                activity.OfficeID = ContributorID;
                 db.Entry(activity).State = EntityState.Modified;
                 db.SaveChanges();
                 TempData["Updatenotice"] = "Successfully updated! ";

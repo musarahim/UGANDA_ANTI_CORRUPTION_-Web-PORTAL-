@@ -1,0 +1,43 @@
+﻿@model Uganda_anti_corruption_portal.Models.ViewReportedCase
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="adminback">
+    <h2>Details</h2>
+
+    <div>
+        <h4>Office</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-md-2">
+                @Html.DisplayNameFor(model => model.ReportCase.Title)
+            </dt>
+
+            <dd class="col-md-10">
+                @Html.DisplayFor(model => model.ReportCase.Title)
+            </dd>
+
+            <dt class="col-md-2">
+                @Html.DisplayNameFor(model => model.Office.OfficeName)
+            </dt>
+
+            <dd class="col-md-10">
+                @Html.DisplayFor(model => model.Office.OfficeName)
+            </dd>
+
+            <dt class="col-md-2">
+                @Html.DisplayNameFor(model => model.Comment)
+            </dt>
+
+            <dd class="col-md-10">
+                @Html.DisplayFor(model => model.Comment)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ViewReportedCaseID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>
